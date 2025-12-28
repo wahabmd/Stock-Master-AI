@@ -1,0 +1,5 @@
+{
+  "name": "StockMaster AI",
+  "description": "A comprehensive tool for Adobe Stock contributors and AI artists to generate vector metadata and image prompts using Gemini 3.",
+  "requestFramePermissions": []
+}
