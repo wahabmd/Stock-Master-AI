@@ -17,5 +17,12 @@ export interface FileItem {
 
 export enum AppTab {
   VECTOR_TOOL = 'vector',
-  PROMPT_TOOL = 'prompt'
+  PROMPT_TOOL = 'prompt',
+  TRENDS_TOOL = 'trends'
+}
+
+export interface TrendingCategory {
+  category: string;
+  keywords: string[];
+  description: string;
 }

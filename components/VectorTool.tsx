@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FileItem } from '../types';
 import { fileToDataPart, generateVectorMetadata } from '../services/gemini';
@@ -83,8 +84,8 @@ const VectorTool: React.FC = () => {
       {/* Hero Header */}
       <div className="bg-indigo-600 rounded-2xl p-8 text-white shadow-xl shadow-indigo-100 flex flex-col md:flex-row justify-between items-center gap-6">
         <div className="max-w-xl">
-          <h2 className="text-3xl font-bold mb-2">Vector Metadata Generator</h2>
-          <p className="text-indigo-100">AI-powered generation of Adobe Stock titles and tags. Now exports valid .eps structures.</p>
+          <h2 className="text-3xl font-bold mb-2">Vector Metadata Pro</h2>
+          <p className="text-indigo-100">BoldStock AI's professional metadata engine for SVG & EPS stock contributors.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <label className="bg-white text-indigo-600 px-6 py-3 rounded-xl font-semibold cursor-pointer hover:bg-indigo-50 transition-colors shadow-sm inline-flex items-center gap-2 text-sm">
@@ -165,7 +166,7 @@ const VectorTool: React.FC = () => {
                   {item.status === 'processing' && (
                     <div className="h-full flex flex-col items-center justify-center text-center">
                       <div className="animate-spin rounded-full h-8 w-8 border-2 border-indigo-600 border-b-transparent mb-4"></div>
-                      <p className="text-sm text-slate-500 font-medium">Gemini is analyzing your vector...</p>
+                      <p className="text-sm text-slate-500 font-medium">BoldStock is analyzing your vector...</p>
                     </div>
                   )}
 

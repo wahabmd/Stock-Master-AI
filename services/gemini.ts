@@ -1,5 +1,5 @@
 import { GoogleGenAI, Type, GenerateContentResponse } from "@google/genai";
-import { VectorMetadata } from "../types";
+import { VectorMetadata, TrendingCategory } from "../types";
 
 // Always initialize GoogleGenAI with a named parameter for apiKey using process.env.API_KEY
 const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
@@ -104,16 +104,54 @@ export async function generateVectorMetadata(filePart: any): Promise<VectorMetad
 /**
  * Generates a high-quality AI prompt from an image
  */
-export async function generateImagePrompt(filePart: any): Promise<string> {
+export async function generateImagePrompt(filePart: any, theme?: string): Promise<string> {
+  const themeInstruction = theme ? `The central theme for this image is: "${theme}". Ensure the generated prompt revolves around this theme.` : "";
+  
   const response = await ai.models.generateContent({
     model: "gemini-3-flash-preview",
     contents: {
       parts: [
         filePart,
-        { text: "Describe this image in meticulous detail to create a high-quality text-to-image prompt. Focus on composition, lighting, camera angle, textures, colors, and the specific artistic style. Do not use conversational filler, just the prompt text." }
+        { text: `Describe this image in meticulous detail to create a high-quality text-to-image prompt. 
+        Focus on composition, lighting, camera angle, textures, colors, and the specific artistic style. 
+        ${themeInstruction}
+        IMPORTANT: The prompt must be under 1000 characters long.
+        Do not use conversational filler, just the prompt text.` }
       ],
     },
   });
 
   return response.text || "Failed to generate prompt.";
+}
+
+/**
+ * Fetches trending stock content inspiration categories and keywords
+ */
+export async function getTrendingKeywords(): Promise<TrendingCategory[]> {
+  const response = await ai.models.generateContent({
+    model: "gemini-3-flash-preview",
+    contents: "Identify 5-8 currently trending or seasonally relevant categories for stock graphic resources (illustrations, icons, patterns). For each category, provide a name, a brief description of why it's trending, and 10 highly searchable keywords that stock contributors should target. Focus on commercial viability for sites like Adobe Stock, Shutterstock, and Getty.",
+    config: {
+      responseMimeType: "application/json",
+      responseSchema: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.OBJECT,
+          properties: {
+            category: { type: Type.STRING },
+            description: { type: Type.STRING },
+            keywords: {
+              type: Type.ARRAY,
+              items: { type: Type.STRING }
+            }
+          },
+          required: ["category", "description", "keywords"]
+        }
+      }
+    }
+  });
+
+  const text = response.text;
+  if (!text) throw new Error("Failed to fetch trends.");
+  return JSON.parse(text);
 }

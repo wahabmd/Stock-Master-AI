@@ -1,8 +1,10 @@
-# StockMaster AI
+# BoldStock AI (formerly BoldBrush svg2eps)
 
-**StockMaster AI** is a powerful, AI-driven suite designed specifically for Adobe Stock contributors and digital artists. It streamlines the tedious process of metadata generation for vector illustrations and helps AI artists reverse-engineer high-quality prompts from existing images.
+**BoldStock AI** is a professional, AI-driven suite designed specifically for Adobe Stock contributors and digital artists. It streamlines the tedious process of metadata generation for vector illustrations and helps AI artists reverse-engineer high-quality prompts from existing images.
 
-Built with ❤️ by **Wahab Muhammad**.
+This tool is the evolution of the **BoldBrush svg2eps** prototype.
+
+Developed by **Wahab Muhammad** in collaboration with the **BoldBrush Team**.
 
 ---
 
@@ -11,11 +13,12 @@ Built with ❤️ by **Wahab Muhammad**.
 - **Vector Metadata Generator**: 
     - Analyzes SVG/EPS files using Gemini 3.
     - Generates optimized titles (max 70 chars) and exactly 40 keywords (staying under the 49-tag limit).
-    - Automatic SVG-to-EPS+JPEG rasterization for AI analysis.
+    - Automatic SVG-to-EPS conversion and JPEG preview generation.
     - **One-Click Export**: Generates a ZIP package structured perfectly for Adobe Stock (including `metadata.csv`, `/eps/` folder, and `/pin/` previews).
 - **Prompt Extractor**: 
-    - Upload or paste images to extract detailed text-to-image prompts.
-    - Useful for understanding composition, lighting, and style.
+    - Upload or paste images to extract detailed text-to-image prompts (< 1000 characters).
+    - **Central Theme Input**: Guide the AI to focus on specific artistic styles or subjects.
+    - **Batch Export**: Download all generated prompts in a single `.txt` file.
 - **Copy-to-Clipboard**: Quick copy icons for every metadata field.
 - **Responsive Grid Design**: Modern, clean UI that works across devices.
 
@@ -47,14 +50,10 @@ To run this application locally, follow these steps:
     npm start
     ```
 
-### 3. Usage Tips
-- **SVG Processing**: You don't need to convert SVGs to JPEGs manually; the app handles this in the browser before sending data to the AI.
-- **Adobe Stock Upload**: After generating metadata, use the **"Export Full ZIP"** button. You can upload the resulting ZIP directly to Adobe Stock or use the CSV for bulk uploads.
-- **Keywords**: The AI is programmed to generate 40 tags. You can manually add more or edit them directly in the grid view before exporting.
-
 ---
 
-## 📜 License
-This tool is provided for public use. Feel free to use it to optimize your stock photography and illustration workflow.
+## 📜 License & Credits
+This tool is provided for public use. 
 
-**Built by Wahab Muhammad**
+**Maintained by Wahab Muhammad**  
+**Core Logic by BoldBrush Team**
